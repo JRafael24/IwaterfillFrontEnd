@@ -9,7 +9,7 @@ import 'package:iwaterfill/screens/transactionhistory.dart';
 
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/',
+  initialRoute: '/signup',
   routes: {
     '/' : (context) => Dashboard(),
     '/signup' : (context) => Signup(),

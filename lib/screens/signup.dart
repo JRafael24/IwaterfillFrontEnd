@@ -37,7 +37,7 @@ class _SignupState extends State<Signup> {
           'password': user.password,
         }),
       );
-
+      print(response.body);
       if (response.statusCode == 200) {
         // Registration successful, navigate to login screen
         Navigator.pushReplacementNamed(context, '/login');

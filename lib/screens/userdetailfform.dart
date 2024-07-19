@@ -25,14 +25,15 @@ class _SignupState extends State<Userdetailfform> {
         Uri.parse('http://10.0.2.2:8080/api/v1/auth/$email')
     );
     final data = jsonDecode(response.body);
-    return data['id'];
+    return data;
   }
 
   Future<void> createAccount(Userdetail userdetail, email) async {
       int id = await getId(email);
+      print(id);
     try {
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:8080/api/v1/profile/add'),
+        Uri.parse('http://10.0.2.2:8080/api/v1/profile/addinfo'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -42,7 +43,7 @@ class _SignupState extends State<Userdetailfform> {
           'address': userdetail.address,
         }),
       );
-
+        print(response.body);
       if (response.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Registration Successful')),
