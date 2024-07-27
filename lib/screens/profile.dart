@@ -87,35 +87,37 @@ Future<bool> _logout() async{
             return Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/city.png',
+                            width: 300,
+                            height: 150,
+                            fit: BoxFit.contain,
+                          ),
+                        ],
+                      ),
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Center(
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage('assets/shiba.png'),
-                            backgroundColor: Colors.grey[200],
-                            radius: 65.0,
-                          ),
-                        ),
-                        Divider(
-                          height: 48.0,
-                          color: Colors.grey[200],
-                        ),
                         Row(
                           children: [
                             Icon(
                               Icons.person_2,
-                              color: Colors.grey[200],
+                              color: Colors.black,
                             ),
                             SizedBox(width: 3.0,),
                             Text(
                               'NAME',
                               style: TextStyle(
                                 fontSize: 16.0,
-                                color: Colors.grey[200],
+                                color: Colors.black,
                                 letterSpacing: 2.0,
                               ),
                             ),
@@ -125,7 +127,7 @@ Future<bool> _logout() async{
                           profile['name'],
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.grey[200],
+                            color: Colors.black,
                             fontSize: 25.0,
                           ),
                         ),
@@ -134,14 +136,14 @@ Future<bool> _logout() async{
                           children: [
                             Icon(
                               Icons.email_outlined,
-                              color: Colors.grey[200],
+                              color: Colors.black,
                             ),
                             SizedBox(width: 3.0,),
                             Text(
                               'MOBILE NUMBER',
                               style: TextStyle(
                                 fontSize: 16.0,
-                                color: Colors.grey[200],
+                                color: Colors.black,
                                 letterSpacing: 2.0,
                               ),
                             ),
@@ -151,7 +153,7 @@ Future<bool> _logout() async{
                           profile['mobileNumber'],
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.grey[200],
+                            color: Colors.black,
                             fontSize: 25.0,
                           ),
                         ),
@@ -161,14 +163,14 @@ Future<bool> _logout() async{
                           children: [
                             Icon(
                               Icons.email_outlined,
-                              color: Colors.grey[200],
+                              color: Colors.black,
                             ),
                             SizedBox(width: 3.0,),
                             Text(
                               'ADDRESS',
                               style: TextStyle(
                                 fontSize: 16.0,
-                                color: Colors.grey[200],
+                                color: Colors.black,
                                 letterSpacing: 2.0,
                               ),
                             ),
@@ -178,7 +180,7 @@ Future<bool> _logout() async{
                           profile['address'],
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.grey[200],
+                            color: Colors.black,
                             fontSize: 25.0,
                           ),
                         ),
@@ -206,7 +208,7 @@ Future<bool> _logout() async{
                           child: Text(
                             'Logout',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: Colors.black,
                               fontSize: 16.0,
                               letterSpacing: 2.0,
                               fontWeight: FontWeight.bold
