@@ -54,6 +54,7 @@ class _TransactionhistoryState extends State<Transactionhistory> {
         backgroundColor: Colors.grey[200],
         centerTitle: true,
         title: Text('Transaction History'),
+
       ),
 
       body: Column(
