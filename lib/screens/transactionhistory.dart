@@ -63,7 +63,7 @@ class _TransactionhistoryState extends State<Transactionhistory> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               decoration: InputDecoration(
-                hintText: 'Search by ID or Location',
+                hintText: 'Search by ID',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.search),
                 filled: true,
