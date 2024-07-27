@@ -17,7 +17,7 @@ void main() => runApp(MaterialApp(
     '/signup' : (context) => Signup(),
     '/login' : (context) => Login(),
     '/buywater' : (context) => BuyWater(),
-    '/transactionhistory' : (context) => Transactionhistory(),
+    '/transactionhistory' : (context) => TransactionHistory(),
     '/refill' : (context) => Refill(),
     '/profile' : (context) => Profile(),
 
