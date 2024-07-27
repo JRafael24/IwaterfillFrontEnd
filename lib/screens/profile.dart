@@ -23,8 +23,8 @@ class _ProfileState extends State<Profile> {
       barrierDismissible: false,
       builder:  (BuildContext context){
         return Center(
-          child:  SpinKitCubeGrid(
-            color: Colors.amber,
+          child:  SpinKitWave(
+            color: Colors.blue,
             size: 100,
           ),
         );
@@ -75,7 +75,7 @@ Future<bool> _logout() async{
       backgroundColor: Colors.blue[200],
       appBar: AppBar(
         title: Text('Profile'),
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.blue[800],
         centerTitle: true,
 
       ),
@@ -103,6 +103,9 @@ Future<bool> _logout() async{
                         ],
                       ),
                     ),
+                    Divider(height: 40.0,
+                    color: Colors.blue[800],
+                    thickness: 4.0,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -216,7 +219,7 @@ Future<bool> _logout() async{
                           ),
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all(
-                              Colors.grey[200])
+                              Colors.blue[800])
                           ),
                         ),
                       ],
@@ -226,7 +229,7 @@ Future<bool> _logout() async{
             );
           }
           return Center(
-            child: SpinKitCubeGrid(
+            child: SpinKitWave(
               color: Colors.blue,
               size: 100,
             ),

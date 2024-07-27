@@ -32,8 +32,8 @@ class _BuyWaterState extends State<Refill> {
   int _quantity = 1;
 
   final List<Map<String, dynamic>> _items = [
-    {'label': 'Container', 'image': 'assets/CONTAINER.png', 'price': 25.00},
-    {'label': 'Dispenser', 'image': 'assets/ROUND CONTAINER.png', 'price': 30.00},
+    {'label': 'Container Water', 'image': 'assets/CONTAINER.png', 'price': 25.00},
+    {'label': 'Dispenser Water', 'image': 'assets/ROUND CONTAINER.png', 'price': 30.00},
   ];
 
   @override
@@ -136,7 +136,7 @@ class _BuyWaterState extends State<Refill> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.blue[200],
       appBar: AppBar(
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.blue[800],
         centerTitle: true,
         title: Text('Make purchase'),
       ),
@@ -276,15 +276,23 @@ class _BuyWaterState extends State<Refill> {
             // Place Order Button
             ElevatedButton(
               onPressed: _placeOrder,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue[800], // Background color
+                foregroundColor: Colors.black, // Color for the text and icon
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0), // Optional: Rounded corners
+                ),
+              ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.shopping_cart),
+                  Icon(Icons.shopping_cart, color: Colors.black),
                   SizedBox(width: 10.0),
-                  Text('Place Order'),
+                  Text('Place Order', style: TextStyle(color: Colors.black)),
                 ],
               ),
-            ),
+            )
+
           ],
         ),
       ),
