@@ -1,111 +1,140 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Transactionhistory extends StatefulWidget {
-  @override
-  _TransactionhistoryState createState() => _TransactionhistoryState();
+class Payment {
+  final int id;
+  final int userId;
+  final String paymentId;
+  final String productName;
+  final int quantity;
+  final DateTime paymentDate;
+  final String location;
+  final double price;
+
+  Payment({
+    required this.id,
+    required this.userId,
+    required this.paymentId,
+    required this.productName,
+    required this.quantity,
+    required this.paymentDate,
+    required this.location,
+    required this.price,
+  });
+
+  factory Payment.fromJson(Map<String, dynamic> json) {
+    return Payment(
+      id: json['id'],
+      userId: json['userId'],
+      paymentId: json['paymentId'],
+      productName: json['productName'],
+      quantity: json['quantity'],
+      paymentDate: DateTime.parse(json['paymentDate']),
+      location: json['location'],
+      price: json['price'].toDouble(),
+    );
+  }
 }
 
-class _TransactionhistoryState extends State<Transactionhistory> {
-  List<Map<String, dynamic>> transactions = [
-    {
-      'id': '1',
-      'dateTime': '2024-07-16T14:00:00',
-      'quantity': 10,
-      'location': 'Station 1',
-      'amount': 100.0
-    },
-    {
-      'id': '2',
-      'dateTime': '2024-07-15T10:30:00',
-      'quantity': 20,
-      'location': 'Station 2',
-      'amount': 200.0
-    },
-    // Add more transactions as needed
-  ];
+class TransactionHistory extends StatefulWidget {
+  const TransactionHistory({Key? key}) : super(key: key);
 
-  List<Map<String, dynamic>> filteredTransactions = [];
-  String searchQuery = '';
+  @override
+  _TransactionHistoryState createState() => _TransactionHistoryState();
+}
+
+class _TransactionHistoryState extends State<TransactionHistory> {
+  late Future<List<Payment>> _payments;
+  late int _userId;
 
   @override
   void initState() {
     super.initState();
-    filteredTransactions = transactions;
+    _loadUserId();
   }
 
-  void _filterTransactions(String query) {
-    final filtered = transactions.where((transaction) {
-      return transaction['id'].contains(query) ||
-          transaction['location'].toLowerCase().contains(query.toLowerCase());
-    }).toList();
-
+  Future<void> _loadUserId() async {
+    final prefs = await SharedPreferences.getInstance();
     setState(() {
-      searchQuery = query;
-      filteredTransactions = filtered;
+      _userId = int.parse(prefs.get('userId').toString());
+      _payments = fetchPaymentsByUserId(_userId);
     });
+  }
+
+  Future<List<Payment>> fetchPaymentsByUserId(int userId) async {
+    final response = await http.get(Uri.parse('http://10.0.2.2:8080/api/v1/payment/user/$userId'));
+
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((payment) => Payment.fromJson(payment)).toList();
+    } else {
+      throw Exception('Failed to load payments');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.blue[200],
       appBar: AppBar(
-        backgroundColor: Colors.grey[200],
-        centerTitle: true,
         title: Text('Transaction History'),
       ),
+      body: FutureBuilder<List<Payment>>(
+        future: _payments,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Failed to load data'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No payments found'));
+          }
 
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search by ID or Location',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.search),
-                filled: true,
-                fillColor: Colors.white,
-              ),
-              onChanged: _filterTransactions,
-            ),
-          ),
-          Expanded(
-            child: filteredTransactions.isEmpty
-                ? Center(child: Text('No transactions available.'))
-                : ListView.builder(
-              itemCount: filteredTransactions.length,
-              itemBuilder: (context, index) {
-                final transaction = filteredTransactions[index];
-                return Card(
-                  margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.all(16.0),
-                    title: Text('ID: ${transaction['id']}', style: TextStyle(fontWeight: FontWeight.bold)),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Date & Time: ${DateTime.parse(transaction['dateTime']).toLocal()}'),
-                        Text('Quantity: ${transaction['quantity']}'),
-                        Text('Location: ${transaction['location']}'),
-                        Text('Amount: ₱${transaction['amount'].toStringAsFixed(2)}'),
-                      ],
-                    ),
-                    onTap: () {},
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
+          final payments = snapshot.data!;
+
+          return ListView.builder(
+            itemCount: payments.length,
+            itemBuilder: (context, index) {
+              final payment = payments[index];
+              return ListTile(
+                title: Text(payment.productName),
+                subtitle: Text('₱${payment.price.toStringAsFixed(2)}'),
+                trailing: Text('${payment.quantity} units'),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Payment Details'),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Product Name: ${payment.productName}'),
+                            Text('Quantity: ${payment.quantity}'),
+                            Text('Price: ₱${payment.price.toStringAsFixed(2)}'),
+                            Text('Payment Date: ${payment.paymentDate}'),
+                            Text('Location: ${payment.location}'),
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Close'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              );
+            },
+          );
+        },
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: Transactionhistory(),
-  ));
 }
