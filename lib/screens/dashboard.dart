@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -14,7 +15,20 @@ class Dashboard extends StatefulWidget {
   @override
   State<Dashboard> createState() => _DashboardState();
 }
-
+buildShowDialog(BuildContext context){
+  return showDialog(
+      context:  context,
+      barrierDismissible: false,
+      builder:  (BuildContext context){
+        return Center(
+          child:  SpinKitWave(
+            color: Colors.blue,
+            size: 100,
+          ),
+        );
+      }
+  );
+}
 class _DashboardState extends State<Dashboard> {
   Future<Map<String, String>> _loadCredentials() async {
     try {
@@ -45,21 +59,19 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[200],
-      appBar: AppBar(
-        backgroundColor: Colors.grey[200],
-        centerTitle: true,
-        title: Image.asset(
-          'assets/city.png',
-          width: 100,
-          height: 80,
-          fit: BoxFit.contain, // Adjust the fit as needed
-        ),
-        automaticallyImplyLeading: false,
-      ),
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 150),
+             Image.asset(
+              'assets/city.png',
+              width: 300,
+              height: 200,
+              fit: BoxFit.contain, // Adjust the fit as needed
+            ),
+            Divider(height: 40.0,
+            color: Colors.blue[800],
+            thickness: 3.0,),
+            SizedBox(height: 50),
             Expanded(
               child: GridView.count(
                 crossAxisCount: 2,
@@ -114,11 +126,12 @@ class _DashboardState extends State<Dashboard> {
         borderRadius: BorderRadius.circular(15.0),
       ),
       elevation: 5,
-      shadowColor: Colors.grey,
+      shadowColor: Colors.yellow,
+
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue[100],
+          backgroundColor: Colors.blue[800],
           foregroundColor: Colors.blue[800],
           elevation: 0,
           shape: RoundedRectangleBorder(
@@ -138,7 +151,7 @@ class _DashboardState extends State<Dashboard> {
               label,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.blue[800],
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
