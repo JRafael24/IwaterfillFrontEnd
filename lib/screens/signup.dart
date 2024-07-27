@@ -37,7 +37,7 @@ class _SignupState extends State<Signup> {
       return err.toString();
     }
   }
-  Future<int> getUserId(String email, String password) async{
+   Future<int> getUserId(String email, String password) async{
     final basicAuth = base64Encode(utf8.encode('$email:$password'));
     final response = await http.get(
         Uri.parse('http://10.0.2.2:8080/api/v1/profile/$email'),
@@ -98,9 +98,9 @@ class _SignupState extends State<Signup> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/wafill.png',
+                        'assets/city.png',
                         width: 300,
-                        height: 100,
+                        height: 150,
                         fit: BoxFit.contain,
                       ),
                     ],

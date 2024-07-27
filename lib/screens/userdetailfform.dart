@@ -92,9 +92,9 @@ class _SignupState extends State<Userdetailfform> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/wafill.png',
-                        width: 300,
-                        height: 100,
+                        'assets/city.png',
+                        width: 400,
+                        height: 200,
                         fit: BoxFit.contain,
                       ),
                     ],
