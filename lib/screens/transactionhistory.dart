@@ -79,6 +79,7 @@ class _TransactionHistoryState extends State<TransactionHistory> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Transaction History'),
+
       ),
       body: FutureBuilder<List<Payment>>(
         future: _payments,
@@ -134,6 +135,7 @@ class _TransactionHistoryState extends State<TransactionHistory> {
             },
           );
         },
+
       ),
     );
   }

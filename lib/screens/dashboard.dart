@@ -49,9 +49,9 @@ class _DashboardState extends State<Dashboard> {
         backgroundColor: Colors.grey[200],
         centerTitle: true,
         title: Image.asset(
-          'assets/wafill.png',
-          width: 300,
-          height: 60,
+          'assets/city.png',
+          width: 100,
+          height: 80,
           fit: BoxFit.contain, // Adjust the fit as needed
         ),
         automaticallyImplyLeading: false,

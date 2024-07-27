@@ -89,8 +89,8 @@ class _LoginState extends State<Login> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/wafill.png',
-                        width: 450, // Adjust width as needed
+                        'assets/city.png',
+                        width: 350, // Adjust width as needed
                         height: 200, // Adjust height as needed
                         fit: BoxFit.contain, // Adjust the fit as needed
                       ),

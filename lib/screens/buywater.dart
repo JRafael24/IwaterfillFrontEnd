@@ -145,6 +145,13 @@ class _BuyWaterState extends State<BuyWater> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+               Image.asset(
+                'assets/city.png',
+                width: 250, // Adjust width as needed
+                height: 150, // Adjust height as needed
+                fit: BoxFit.contain, // Adjust the fit as needed
+              ),
+
             GestureDetector(
               onTap: () {
                 _selectDate(context);
