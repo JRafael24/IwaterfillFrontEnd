@@ -134,7 +134,7 @@ class _BuyWaterState extends State<BuyWater> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.blue[200],
+      backgroundColor: Colors.blue[300],
       appBar: AppBar(
         backgroundColor: Colors.blue[800],
         centerTitle: true,
@@ -146,7 +146,7 @@ class _BuyWaterState extends State<BuyWater> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
                Image.asset(
-                'assets/city.png',
+                'assets/new.png',
                 width: 250, // Adjust width as needed
                 height: 150, // Adjust height as needed
                 fit: BoxFit.contain, // Adjust the fit as needed

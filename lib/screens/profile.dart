@@ -72,11 +72,12 @@ Future<bool> _logout() async{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[200],
+      backgroundColor: Colors.blue[300],
       appBar: AppBar(
-        title: Text('Profile'),
+        title: Text('PROFILE'),
         backgroundColor: Colors.blue[800],
         centerTitle: true,
+
 
       ),
       body: FutureBuilder(
@@ -95,7 +96,7 @@ Future<bool> _logout() async{
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Image.asset(
-                            'assets/city.png',
+                            'assets/new.png',
                             width: 300,
                             height: 150,
                             fit: BoxFit.contain,
@@ -103,7 +104,7 @@ Future<bool> _logout() async{
                         ],
                       ),
                     ),
-                    Divider(height: 40.0,
+                    Divider(height: 10.0,
                     color: Colors.blue[800],
                     thickness: 4.0,),
                     Column(
@@ -219,7 +220,7 @@ Future<bool> _logout() async{
                           ),
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all(
-                              Colors.blue[800])
+                              Colors.blue[200])
                           ),
                         ),
                       ],

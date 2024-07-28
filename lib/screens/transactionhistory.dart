@@ -78,7 +78,7 @@ class _TransactionHistoryState extends State<TransactionHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.blue[200],
+      backgroundColor: Colors.blue[300],
       appBar: AppBar(
         backgroundColor: Colors.blue[800], // Gradient effect for the AppBar
         centerTitle: true,
@@ -118,7 +118,9 @@ class _TransactionHistoryState extends State<TransactionHistory> {
               itemBuilder: (context, index) {
                 final payment = payments[index];
                 return Card(
-                  elevation: 10.0, // Increased elevation for depth
+                  elevation: 10.0,
+                  color: Colors.blue[400],
+                  shadowColor: Colors.yellow,// Increased elevation for depth
                   margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0), // Rounded corners
