@@ -78,7 +78,7 @@ class _SignupState extends State<Userdetailfform> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.blue[300],
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -92,7 +92,7 @@ class _SignupState extends State<Userdetailfform> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/city.png',
+                        'assets/new.png',
                         width: 400,
                         height: 200,
                         fit: BoxFit.contain,

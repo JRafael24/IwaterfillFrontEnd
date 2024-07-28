@@ -58,12 +58,12 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[200],
+      backgroundColor: Colors.blue[300],
       body: Center(
         child: Column(
           children: [
              Image.asset(
-              'assets/city.png',
+              'assets/new.png',
               width: 300,
               height: 200,
               fit: BoxFit.contain, // Adjust the fit as needed

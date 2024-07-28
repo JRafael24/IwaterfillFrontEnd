@@ -75,7 +75,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.blue[300],
       body: SafeArea(
         child: Container(
           child: Padding(
@@ -89,7 +89,7 @@ class _LoginState extends State<Login> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/city.png',
+                        'assets/new.png',
                         width: 350, // Adjust width as needed
                         height: 200, // Adjust height as needed
                         fit: BoxFit.contain, // Adjust the fit as needed
